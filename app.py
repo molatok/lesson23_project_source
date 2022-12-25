@@ -9,14 +9,15 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
 
-@app.route("/perform_query", methods=["POST", "GET"])
+@app.route("/perform_query", methods=["POST"])
 def perform_query():
     storage = ''
-    cmd1 = request.args.get('cmd1')
-    value1 = request.args.get('value1')
-    cmd2 = request.args.get('cmd2')
-    value2 = request.args.get('value2')
-    file_name = request.args.get("file_name")
+    data = request.json
+    cmd1 = data['cmd1']
+    value1 = data['value1']
+    cmd2 = data['cmd2']
+    value2 = data['value2']
+    file_name = data['file_name']
 
     if file_name is None:
         return "Файл не указан", 400
@@ -50,5 +51,4 @@ def perform_query():
             return limit(storage, value2)
         elif cmd2 == 'map':
             return map(storage, value2)
-
 
