@@ -20,13 +20,11 @@ def perform_query():
     file_name = data['file_name']
 
     if file_name is None:
-        return "Файл не указан", 400
-    else:
-        if (cmd1 or cmd2) is None:
-            return "В запросе отсутствуют данные", 400
+        return "Не указано название файла", 400
+    elif (cmd1 or cmd2) is None:
+        return "В запросе отсутствуют данные", 400
 
     file_path = os.path.join(DATA_DIR, file_name)
-
     if not os.path.exists(file_path):
         return "Файл не найден", 400
 
@@ -51,4 +49,3 @@ def perform_query():
             return limit(storage, value2)
         elif cmd2 == 'map':
             return map(storage, value2)
-
