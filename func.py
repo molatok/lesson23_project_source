@@ -3,9 +3,8 @@ def filter(data, value: str):
 
 
 def unique(data):
-    unique_data = []
-    unique_data.append(_ for _ in data if _ not in unique_data)
-    return list(unique_data)
+    unique_data = list(set(data))
+    return unique_data
 
 
 def sort(data, asc):
@@ -20,5 +19,8 @@ def limit(data, value: int):
 
 
 def map(data, value: int):
-    return list(_.split(" ")[int(value)] for _ in data)
+    return (_.split(" ")[int(value)] for _ in data)
 
+
+a = ("мясо", "хлуб", "колбаса", "хлrб")
+print(map(a, 2))
