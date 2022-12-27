@@ -31,6 +31,8 @@ def perform_query():
     with open(file_path, 'r') as data:
         if cmd1 == 'filter':
             storage = filter(data, value1)
+        if cmd1 == 'regex':
+            return regex(data, value1)
         elif cmd1 == 'unique':
             storage = unique(data)
         elif cmd1 == 'sort':
